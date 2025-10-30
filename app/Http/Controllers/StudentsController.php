@@ -11,7 +11,8 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        //
+        $students = DB::table('Students')->get();
+        return view('students/index',compact('students'));
     }
 
     /**
