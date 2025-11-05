@@ -2,54 +2,51 @@
 @section('title', 'Music')
 @section('content')
 
-    <form action=" " method="POST">
+    <form action="{{ route('performances.store') }}" method="POST">
         @csrf
         @method('POST')
 
         <table class="table-bordered">
             <tr>
                 <td>
-                    <strong>รหัสนิสิต:</strong>
+                    <strong>รหัสการแสดง</strong>
                 </td>
-
                 <td>
-                    <input type="text" name="student_code" readonly value="67161111" class="form-control"
-                        placeholder="รหัสนิสิต">
+                    <input type="text" name="performance_id" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>ชื่อ-นามสกุล:</strong>
+                    <strong>ชื่อการแสดง</strong>
                 </td>
                 <td>
-                    <input type="text" name="student_name" class="form-control" placeholder="ชื่อ-นามสกุล">
+                    <input type="text" name="performance_name" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>เกรดเฉลี่ย:</strong>
+                    <strong>วันที่แสดง</strong>
                 </td>
                 <td>
-                    <input type="text" name="gpa" class="form-control" placeholder="GPA">
+                    <input type="text" name="performance_date" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>รหัสสาขา</strong>
+                    <strong>สถานที่ที่แสดง</strong>
                 </td>
                 <td>
-                    <input type="text" name="dept_code" class="form-control" placeholder="รหัสสาขา">
+                    <input type="text" name="venue" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>รหัสอาจารย์ :</strong>
+                    <strong>คำอธิบาย</strong>
                 </td>
                 <td>
-                    <input type="text" name="advisor_code" class="form-control" placeholder="รหัสอาจารย์ที่ปรึกษา">
+                    <input type="text" name="description" class="form-control">
                 </td>
             </tr>
-
 
             <tr>
                 <td>

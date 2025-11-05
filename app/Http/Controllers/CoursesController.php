@@ -20,7 +20,25 @@ class CoursesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'course_id' => 'required',
+            'course_name' => 'required',
+            'instrument_id' => 'required',
+            'level' => 'required',
+            'duration_weeks' => 'required',
+            'price' => 'required',
+        ]);
+
+        DB::table('Courses')->insert([
+            'course_id' => $request->course_id,
+            'course_name' => $request->course_name,
+            'instrument_id' => $request->instrument_id,
+            'level' => $request->level,
+            'duration_weeks' => $request->duration_weeks,
+            'price' => $request->price,
+        ]);
+
+        return redirect()->route('courses.index')->with('Success','Course created successfully.');
     }
 
     public function show(string $id)

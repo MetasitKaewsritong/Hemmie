@@ -2,54 +2,67 @@
 @section('title', 'Music')
 @section('content')
 
-    <form action=" " method="POST">
+    <form action="{{ route('lessons.store') }}" method="POST">
         @csrf
         @method('POST')
 
         <table class="table-bordered">
             <tr>
                 <td>
-                    <strong>รหัสนิสิต:</strong>
+                    <strong>รหัสวิชา</strong>
                 </td>
-
                 <td>
-                    <input type="text" name="student_code" readonly value="67161111" class="form-control"
-                        placeholder="รหัสนิสิต">
+                    <input type="text" name="lesson_id" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>ชื่อ-นามสกุล:</strong>
+                    <strong>รหัสนักเรียน</strong>
                 </td>
                 <td>
-                    <input type="text" name="student_name" class="form-control" placeholder="ชื่อ-นามสกุล">
+                    <input type="text" name="enrollment_id" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>เกรดเฉลี่ย:</strong>
+                    <strong>วันที่ลงทะเบียน</strong>
                 </td>
                 <td>
-                    <input type="text" name="gpa" class="form-control" placeholder="GPA">
+                    <input type="text" name="lesson_date" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>รหัสสาขา</strong>
+                    <strong>เวลาเริ่ม</strong>
                 </td>
                 <td>
-                    <input type="text" name="dept_code" class="form-control" placeholder="รหัสสาขา">
+                    <input type="text" name="start_time" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>รหัสอาจารย์ :</strong>
+                    <strong>เวลาสิ้นสุด</strong>
                 </td>
                 <td>
-                    <input type="text" name="advisor_code" class="form-control" placeholder="รหัสอาจารย์ที่ปรึกษา">
+                    <input type="text" name="end_time" class="form-control">
                 </td>
             </tr>
-
+            <tr>
+                <td>
+                    <strong>การมาเรียน</strong>
+                </td>
+                <td>
+                    <input type="text" name="attendance" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>คำอธิบาย</strong>
+                </td>
+                <td>
+                    <input type="text" name="notes" class="form-control">
+                </td>
+            </tr>
 
             <tr>
                 <td>

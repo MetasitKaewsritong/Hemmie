@@ -20,7 +20,23 @@ class PerformancesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'performance_id' => 'required',
+            'performance_name' => 'required',
+            'performance_date' => 'required',
+            'venue' => 'required',
+            'description' => 'required',
+        ]);
+
+        DB::table('Performances')->insert([
+            'performance_id' => $request->performance_id,
+            'performance_name' => $request->performance_name,
+            'performance_date' => $request->performance_date,
+            'venue' => $request->venue,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('performances.index')->with('Success','Performance created successfully.');
     }
 
     public function show(string $id)

@@ -2,54 +2,59 @@
 @section('title', 'Music')
 @section('content')
 
-    <form action=" " method="POST">
+    <form action="{{ route('courses.store') }}" method="POST">
         @csrf
         @method('POST')
 
         <table class="table-bordered">
             <tr>
                 <td>
-                    <strong>รหัสนิสิต:</strong>
+                    <strong>รหัสวิชา</strong>
                 </td>
-
                 <td>
-                    <input type="text" name="student_code" readonly value="67161111" class="form-control"
-                        placeholder="รหัสนิสิต">
+                    <input type="text" name="course_id" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>ชื่อ-นามสกุล:</strong>
+                    <strong>ชื่อวิชา</strong>
                 </td>
                 <td>
-                    <input type="text" name="student_name" class="form-control" placeholder="ชื่อ-นามสกุล">
+                    <input type="text" name="course_name" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>เกรดเฉลี่ย:</strong>
+                    <strong>รหัสเครื่องดนตรี</strong>
                 </td>
                 <td>
-                    <input type="text" name="gpa" class="form-control" placeholder="GPA">
+                    <input type="text" name="instrument_id" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>รหัสสาขา</strong>
+                    <strong>ระดับ</strong>
                 </td>
                 <td>
-                    <input type="text" name="dept_code" class="form-control" placeholder="รหัสสาขา">
+                    <input type="text" name="level" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>รหัสอาจารย์ :</strong>
+                    <strong>จำนวนสัปดาห์</strong>
                 </td>
                 <td>
-                    <input type="text" name="advisor_code" class="form-control" placeholder="รหัสอาจารย์ที่ปรึกษา">
+                    <input type="text" name="duration_weeks" class="form-control">
                 </td>
             </tr>
-
+            <tr>
+                <td>
+                    <strong>ราคา</strong>
+                </td>
+                <td>
+                    <input type="text" name="price" class="form-control">
+                </td>
+            </tr>
 
             <tr>
                 <td>

@@ -20,7 +20,21 @@ class InstrumentsController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'instrument_id' => 'required',
+            'instrument_name' => 'required',
+            'category' => 'required',
+            'rental_price' => 'required',
+        ]);
+
+        DB::table('Instruments')->insert([
+            'instrument_id' => $request->instrument_id,
+            'instrument_name' => $request->instrument_name,
+            'category' => $request->category,
+            'rental_price' => $request->rental_price,
+        ]);
+
+        return redirect()->route('instruments.index')->with('Success','Instrument created successfully.');
     }
 
     public function show(string $id)

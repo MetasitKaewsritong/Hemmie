@@ -20,7 +20,27 @@ class StudentsController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'student_id' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'date_of_birth' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'registration_date' => 'required',
+        ]);
+
+        DB::table('Students')->insert([
+            'student_id' => $request->student_id,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'date_of_birth' => $request->date_of_birth,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'registration_date' => $request->registration_date,
+        ]);
+
+        return redirect()->route('students.index')->with('Success','Student created successfully.');
     }
 
     public function show(string $id)

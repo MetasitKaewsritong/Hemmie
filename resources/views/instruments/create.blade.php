@@ -2,54 +2,43 @@
 @section('title', 'Music')
 @section('content')
 
-    <form action=" " method="POST">
+    <form action="{{ route('instruments.store') }}" method="POST">
         @csrf
         @method('POST')
 
         <table class="table-bordered">
             <tr>
                 <td>
-                    <strong>รหัสนิสิต:</strong>
+                    <strong>รหัสเครื่องดนตรี</strong>
                 </td>
-
                 <td>
-                    <input type="text" name="student_code" readonly value="67161111" class="form-control"
-                        placeholder="รหัสนิสิต">
+                    <input type="text" name="instrument_id" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>ชื่อ-นามสกุล:</strong>
+                    <strong>ชื่อเครื่องดนตรี</strong>
                 </td>
                 <td>
-                    <input type="text" name="student_name" class="form-control" placeholder="ชื่อ-นามสกุล">
+                    <input type="text" name="instrument_name" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>เกรดเฉลี่ย:</strong>
+                    <strong>ชนิดเครื่องดนตรี</strong>
                 </td>
                 <td>
-                    <input type="text" name="gpa" class="form-control" placeholder="GPA">
+                    <input type="text" name="category" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>รหัสสาขา</strong>
+                    <strong>ราคาเช่า</strong>
                 </td>
                 <td>
-                    <input type="text" name="dept_code" class="form-control" placeholder="รหัสสาขา">
+                    <input type="text" name="rental_price" class="form-control">
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <strong>รหัสอาจารย์ :</strong>
-                </td>
-                <td>
-                    <input type="text" name="advisor_code" class="form-control" placeholder="รหัสอาจารย์ที่ปรึกษา">
-                </td>
-            </tr>
-
 
             <tr>
                 <td>

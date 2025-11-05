@@ -2,54 +2,67 @@
 @section('title', 'Music')
 @section('content')
 
-    <form action=" " method="POST">
+    <form action="{{ route('students.store') }}" method="POST">
         @csrf
         @method('POST')
 
         <table class="table-bordered">
             <tr>
                 <td>
-                    <strong>รหัสนิสิต:</strong>
+                    <strong>รหัสนักเรียน</strong>
                 </td>
-
                 <td>
-                    <input type="text" name="student_code" readonly value="67161111" class="form-control"
-                        placeholder="รหัสนิสิต">
+                    <input type="text" name="student_id" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>ชื่อ-นามสกุล:</strong>
+                    <strong>ชื่อจริง</strong>
                 </td>
                 <td>
-                    <input type="text" name="student_name" class="form-control" placeholder="ชื่อ-นามสกุล">
+                    <input type="text" name="first_name" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>เกรดเฉลี่ย:</strong>
+                    <strong>นามสกุล</strong>
                 </td>
                 <td>
-                    <input type="text" name="gpa" class="form-control" placeholder="GPA">
+                    <input type="text" name="last_name" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>รหัสสาขา</strong>
+                    <strong>วัน/เดือน/ปีเกิด</strong>
                 </td>
                 <td>
-                    <input type="text" name="dept_code" class="form-control" placeholder="รหัสสาขา">
+                    <input type="text" name="date_of_birth" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>รหัสอาจารย์ :</strong>
+                    <strong>อีเมลล์</strong>
                 </td>
                 <td>
-                    <input type="text" name="advisor_code" class="form-control" placeholder="รหัสอาจารย์ที่ปรึกษา">
+                    <input type="text" name="email" class="form-control">
                 </td>
             </tr>
-
+            <tr>
+                <td>
+                    <strong>เบอร์โทรศัพท์</strong>
+                </td>
+                <td>
+                    <input type="text" name="phone" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>วันที่ลงทะเบียน</strong>
+                </td>
+                <td>
+                    <input type="text" name="registration_date" class="form-control">
+                </td>
+            </tr>
 
             <tr>
                 <td>
