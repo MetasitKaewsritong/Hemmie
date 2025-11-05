@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class CoursesController extends Controller
 {
     public function index()
     {
-        return view('courses/index');
+        $courses = DB::table('Courses')->get();
+        return view('courses/index',compact('courses'));
     }
 
     public function create()
     {
-        //
+        return view('courses/create');
     }
 
     public function store(Request $request)

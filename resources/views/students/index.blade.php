@@ -5,7 +5,7 @@
     <div>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <button class="btn btn-success">เพิ่มข้อมูล</button>
+                <button class="btn btn-success"><a href="{{ route('students.create') }}">เพิ่มข้อมูล</a></button>
             </li>
         </ul>
     </div>
@@ -23,20 +23,22 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($students as $students)
                     <tr>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
+                        <td>{{ $students->student_id }}</td>
+                        <td>{{ $students->first_name }}</td>
+                        <td>{{ $students->last_name }}</td>
+                        <td>{{ $students->date_of_birth }}</td>
+                        <td>{{ $students->email }}</td>
+                        <td>{{ $students->phone }}</td>
+                        <td>{{ $students->registration_date }}</td>
                         <td>
                         <button class="btn btn-warning" >แก้ไข</button>
 
                         <button type="submit" class="btn btn-danger">ลบ</button>
                         </td>
-                    </tr>                
+                    </tr>
+                @endforeach                
             </tbody>
         </table>
     </div>

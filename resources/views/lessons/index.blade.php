@@ -5,7 +5,7 @@
     <div>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <button class="btn btn-success">เพิ่มข้อมูล</button>
+                <button class="btn btn-success"><a href="{{ route('lessons.create') }}">เพิ่มข้อมูล</a></button>
             </li>
         </ul>
     </div>
@@ -19,22 +19,26 @@
                     <th>เวลาเริ่ม</th>
                     <th>เวลาสิ้นสุด</th>
                     <th>การมาเรียน</th>
+                    <th>คำอธิบาย</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($lessons as $lessons)
                     <tr>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
+                        <td>{{ $lessons->lesson_id }}</td>
+                        <td>{{ $lessons->enrollment_id }}</td>
+                        <td>{{ $lessons->lesson_date }}</td>
+                        <td>{{ $lessons->start_time }}</td>
+                        <td>{{ $lessons->end_time }}</td>
+                        <td>{{ $lessons->attendance }}</td>
+                        <td>{{ $lessons->notes }}</td>
                         <td>
                         <button class="btn btn-warning" >แก้ไข</button>
 
                         <button type="submit" class="btn btn-danger">ลบ</button>
                         </td>
-                    </tr>                
+                    </tr>
+                @endforeach                
             </tbody>
         </table>
     </div>

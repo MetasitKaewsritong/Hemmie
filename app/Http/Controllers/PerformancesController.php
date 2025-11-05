@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class PerformancesController extends Controller
 {
     public function index()
     {
-        return view('performances/index');
+        $performances = DB::table('Performances')->get();
+        return view('performances/index',compact('performances'));
     }
 
     public function create()
     {
-        //
+        return view('performances/create');
     }
 
     public function store(Request $request)
