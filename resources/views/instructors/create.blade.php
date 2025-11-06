@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Music')
+@section('title', 'Music - Instructors')
 @section('content')
 
     <form action="{{ route('instructors.store') }}" method="POST">

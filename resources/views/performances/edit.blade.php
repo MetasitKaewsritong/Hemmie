@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Music')
+@section('title', 'Music - Performances')
 @section('content')
 
 @foreach ($performances as $performances)

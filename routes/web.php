@@ -19,4 +19,6 @@ Route::resource('payments',PaymentsController::class);
 Route::resource('performances',PerformancesController::class);
 Route::resource('students',StudentsController::class);
 
-Route::get('/', [EnrollmentsController::class,'index']);
+Route::get('/', function () {
+    return view('main');
+});
