@@ -30,6 +30,7 @@ class InstructorsController extends Controller
             'hire_date' => 'required',
         ]);
 
+        try {
         DB::table('Instructors')->insert([
             'instructor_id' => $request->instructor_id,
             'first_name' => $request->first_name,
@@ -39,8 +40,10 @@ class InstructorsController extends Controller
             'specialization' => $request->specialization,
             'hire_date' => $request->hire_date,
         ]);
-
         return redirect()->route('instructors.index')->with('Success','Instructor created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('instructors.index')->with('Error','Failed to create Instructor.');
+        }
     }
 
     public function show(string $id)
@@ -56,6 +59,17 @@ class InstructorsController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'instructor_id' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'specialization' => 'required',
+            'hire_date' => 'required',
+        ]);
+
+        try {
         DB::table('Instructors')->where('instructor_id',$id)
         ->update([
             'instructor_id' => $request->instructor_id,
@@ -66,8 +80,10 @@ class InstructorsController extends Controller
             'specialization' => $request->specialization,
             'hire_date' => $request->hire_date,
         ]);
-
         return redirect()->route('instructors.index')->with('Success','Instructor created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('instructors.index')->with('Error','Failed to create Instructor.');
+        }
     }
 
     public function destroy(string $id)

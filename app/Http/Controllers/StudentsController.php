@@ -30,6 +30,7 @@ class StudentsController extends Controller
             'registration_date' => 'required',
         ]);
 
+        try {
         DB::table('Students')->insert([
             'student_id' => $request->student_id,
             'first_name' => $request->first_name,
@@ -39,8 +40,10 @@ class StudentsController extends Controller
             'phone' => $request->phone,
             'registration_date' => $request->registration_date,
         ]);
-
         return redirect()->route('students.index')->with('Success','Student created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('students.index')->with('Error','Failed to create Student.');
+        }
     }
 
     public function show(string $id)
@@ -56,8 +59,20 @@ class StudentsController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'student_id' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'date_of_birth' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'registration_date' => 'required',
+        ]);
+
+        try {
         DB::table('Students')->where('student_id',$id)
         ->update([
+            'student_id' => $request->student_id,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'date_of_birth' => $request->date_of_birth,
@@ -65,13 +80,15 @@ class StudentsController extends Controller
             'phone' => $request->phone,
             'registration_date' => $request->registration_date,
         ]);
-
         return redirect()->route('students.index')->with('Success','Student created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('students.index')->with('Error','Failed to create Student.');
+        }
     }
 
     public function destroy(string $id)
     {
         DB::table('Students')->where('student_id',$id)->delete();
-        return redirect()->route('students.index')->with('success','Student deleted successfully.');
+        return redirect()->route('students.index')->with('Success','Student deleted successfully.');
     }
 }

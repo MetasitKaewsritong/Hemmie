@@ -15,7 +15,8 @@ class CoursesController extends Controller
 
     public function create()
     {
-        return view('courses/create');
+        $instruments = DB::table('Instruments')->get();
+        return view('courses/create',compact('instruments'));
     }
 
     public function store(Request $request)
@@ -29,6 +30,7 @@ class CoursesController extends Controller
             'price' => 'required',
         ]);
 
+        try {
         DB::table('Courses')->insert([
             'course_id' => $request->course_id,
             'course_name' => $request->course_name,
@@ -37,8 +39,10 @@ class CoursesController extends Controller
             'duration_weeks' => $request->duration_weeks,
             'price' => $request->price,
         ]);
-
         return redirect()->route('courses.index')->with('Success','Course created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('courses.index')->with('Error','Failed to create Course.');
+        }
     }
 
     public function show(string $id)
@@ -49,11 +53,22 @@ class CoursesController extends Controller
     public function edit(string $id)
     {
         $courses = DB::table('Courses')->where('course_id',$id)->get();
-        return view('courses/edit',compact('courses'));
+        $instruments = DB::table('Instruments')->get();
+        return view('courses/edit',compact('courses','instruments'));
     }
 
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'course_id' => 'required',
+            'course_name' => 'required',
+            'instrument_id' => 'required',
+            'level' => 'required',
+            'duration_weeks' => 'required',
+            'price' => 'required',
+        ]);
+
+        try {
         DB::table('Courses')->where('course_id',$id)
         ->update([
             'course_id' => $request->course_id,
@@ -63,8 +78,10 @@ class CoursesController extends Controller
             'duration_weeks' => $request->duration_weeks,
             'price' => $request->price,
         ]);
-
         return redirect()->route('courses.index')->with('Success','Course created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('courses.index')->with('Error','Failed to create Course.');
+        }
     }
 
     public function destroy(string $id)

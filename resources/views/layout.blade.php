@@ -10,25 +10,40 @@
 <body>
     <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Music</a>
+        <a class="navbar-brand">M-M-M-Music</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">หน้าแรก </a>
+            <li class="nav-item active">
+                    <a class="nav-link" href="/">Main</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/showbook">ข้อมูลนิสิต </a>
+                    <a class="nav-link" href="/instruments">Instruments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/members">ข้อมูลสาขา </a>
+                    <a class="nav-link" href="/students">Students</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/orders">การลงทะเบียน</a>
-                </li>                                     
+                    <a class="nav-link" href="/instructors">Instructors</a>
+                </li>    
+                <li class="nav-item">
+                    <a class="nav-link" href="/courses">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/lessons">Lessons</a>
+                </li>    
+                <li class="nav-item">
+                    <a class="nav-link" href="/enrollments">Enrollments</a>
+                </li>   
+                <li class="nav-item">
+                    <a class="nav-link" href="/payments">Payments</a>
+                </li>             
+                <li class="nav-item">
+                    <a class="nav-link" href="/performances">Performances</a>
+                </li>                            
             </ul>
         </div>
     </nav>

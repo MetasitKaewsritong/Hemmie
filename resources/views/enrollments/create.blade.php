@@ -20,7 +20,11 @@
                     <strong>รหัสนักเรียน</strong>
                 </td>
                 <td>
-                    <input type="text" name="student_id" class="form-control">
+                    <select name="student_id">
+                        @foreach ($students as $students)
+                            <option value="{{ $students->student_id }}">{{ $students->student_id }}&nbsp;&nbsp;{{ $students->first_name }}&nbsp;&nbsp;{{ $students->last_name }}</option>
+                        @endforeach
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -28,7 +32,11 @@
                     <strong>รหัสวิชา</strong>
                 </td>
                 <td>
-                    <input type="text" name="course_id" class="form-control">
+                    <select name="course_id">
+                        @foreach ($courses as $courses)
+                            <option value="{{ $courses->course_id }}">{{ $courses->course_id }}&nbsp;&nbsp;{{ $courses->course_name }}</option>
+                        @endforeach
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -36,7 +44,11 @@
                     <strong>รหัสผู้สอน</strong>
                 </td>
                 <td>
-                    <input type="text" name="instructor_id" class="form-control">
+                    <select name="instructor_id">
+                        @foreach ($instructors as $instructors)
+                            <option value="{{ $instructors->instructor_id }}">{{ $instructors->instructor_id }}&nbsp;&nbsp;{{ $instructors->first_name }}&nbsp;&nbsp;{{ $instructors->last_name }}</option>
+                        @endforeach
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -67,7 +79,7 @@
             <tr>
                 <td>
                     <div class="card-footer ml-auto mr-auto" align=center>
-                        <button type="reset" class="btn btn-danger">ยกเลิก</button>
+                        <a href="{{ route('enrollments.index') }}" class="btn btn-danger">ยกเลิก</a>
                         <button type="submit" class="btn btn-primary">บันทึก</button>
                     </div>
                 </td>

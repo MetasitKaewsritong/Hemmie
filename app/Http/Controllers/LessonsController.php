@@ -15,7 +15,8 @@ class LessonsController extends Controller
 
     public function create()
     {
-        return view('lessons/create');
+        $enrollments = DB::table('Enrollments')->get();
+        return view('lessons/create',compact('enrollments'));
     }
 
     public function store(Request $request)
@@ -30,6 +31,7 @@ class LessonsController extends Controller
             'notes' => 'required',
         ]);
 
+        try {
         DB::table('Lessons')->insert([
             'lesson_id' => $request->lesson_id,
             'enrollment_id' => $request->enrollment_id,
@@ -39,8 +41,10 @@ class LessonsController extends Controller
             'attendance' => $request->attendance,
             'notes' => $request->notes,
         ]);
-
         return redirect()->route('lessons.index')->with('Success','Lesson created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('lessons.index')->with('Error','Failed to create Lesson.');
+        }
     }
 
     public function show(string $id)
@@ -51,11 +55,23 @@ class LessonsController extends Controller
     public function edit(string $id)
     {
         $lessons = DB::table('Lessons')->where('lesson_id',$id)->get();
-        return view('lessons/edit',compact('lessons'));
+        $enrollments = DB::table('Enrollments')->get();
+        return view('lessons/edit',compact('lessons','enrollments'));
     }
 
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'lesson_id' => 'required',
+            'enrollment_id' => 'required',
+            'lesson_date' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'attendance' => 'required',
+            'notes' => 'required',
+        ]);
+
+        try {
         DB::table('Lessons')->where('lesson_id',$id)
         ->update([
             'lesson_id' => $request->lesson_id,
@@ -66,8 +82,10 @@ class LessonsController extends Controller
             'attendance' => $request->attendance,
             'notes' => $request->notes,
         ]);
-
         return redirect()->route('lessons.index')->with('Success','Lesson created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('lessons.index')->with('Error','Failed to create Lesson.');
+        }
     }
 
     public function destroy(string $id)

@@ -53,7 +53,7 @@
             <tr>
                 <td>
                     <div class="card-footer ml-auto mr-auto" align=center>
-                        <button type="reset" class="btn btn-danger">ยกเลิก</button>
+                        <a href="{{ route('performances.index') }}" class="btn btn-danger">ยกเลิก</a>
                         <button type="submit" class="btn btn-primary">บันทึก</button>
                     </div>
                 </td>

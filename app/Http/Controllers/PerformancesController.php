@@ -28,6 +28,7 @@ class PerformancesController extends Controller
             'description' => 'required',
         ]);
 
+        try {
         DB::table('Performances')->insert([
             'performance_id' => $request->performance_id,
             'performance_name' => $request->performance_name,
@@ -35,8 +36,10 @@ class PerformancesController extends Controller
             'venue' => $request->venue,
             'description' => $request->description,
         ]);
-
         return redirect()->route('performances.index')->with('Success','Performance created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('performances.index')->with('Error','Failed to create Performance.');
+        }
     }
 
     public function show(string $id)
@@ -52,6 +55,15 @@ class PerformancesController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'performance_id' => 'required',
+            'performance_name' => 'required',
+            'performance_date' => 'required',
+            'venue' => 'required',
+            'description' => 'required',
+        ]);
+
+        try {
         DB::table('Performances')->where('performance_id',$id)
         ->update([
             'performance_id' => $request->performance_id,
@@ -60,8 +72,10 @@ class PerformancesController extends Controller
             'venue' => $request->venue,
             'description' => $request->description,
         ]);
-
         return redirect()->route('performances.index')->with('Success','Performance created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('performances.index')->with('Error','Failed to create Performance.');
+        }
     }
 
     public function destroy(string $id)

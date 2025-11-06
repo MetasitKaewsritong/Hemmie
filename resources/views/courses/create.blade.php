@@ -28,7 +28,11 @@
                     <strong>รหัสเครื่องดนตรี</strong>
                 </td>
                 <td>
-                    <input type="text" name="instrument_id" class="form-control">
+                    <select name="instrument_id">
+                        @foreach ($instruments as $instruments)
+                            <option value="{{ $instruments->instrument_id }}">{{ $instruments->instrument_id }}&nbsp;&nbsp;{{ $instruments->instrument_name }}</option>
+                        @endforeach
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -59,7 +63,7 @@
             <tr>
                 <td>
                     <div class="card-footer ml-auto mr-auto" align=center>
-                        <button type="reset" class="btn btn-danger">ยกเลิก</button>
+                        <a href="{{ route('courses.index') }}" class="btn btn-danger">ยกเลิก</a>
                         <button type="submit" class="btn btn-primary">บันทึก</button>
                     </div>
                 </td>

@@ -20,7 +20,11 @@
                     <strong>รหัสการลงทะเบียน</strong>
                 </td>
                 <td>
-                    <input type="text" name="enrollment_id" class="form-control">
+                    <select name="enrollment_id">
+                        @foreach ($enrollments as $enrollments)
+                            <option value="{{ $enrollments->enrollment_id }}">{{ $enrollments->enrollment_id }}</option>
+                        @endforeach
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -67,7 +71,7 @@
             <tr>
                 <td>
                     <div class="card-footer ml-auto mr-auto" align=center>
-                        <button type="reset" class="btn btn-danger">ยกเลิก</button>
+                        <a href="{{ route('lessons.index') }}" class="btn btn-danger">ยกเลิก</a>
                         <button type="submit" class="btn btn-primary">บันทึก</button>
                     </div>
                 </td>

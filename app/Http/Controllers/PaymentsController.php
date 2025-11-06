@@ -15,7 +15,8 @@ class PaymentsController extends Controller
 
     public function create()
     {
-        return view('payments/create');
+        $students = DB::table('Students')->get();
+        return view('payments/create',compact('students'));
     }
 
     public function store(Request $request)
@@ -28,6 +29,7 @@ class PaymentsController extends Controller
             'payment_method' => 'required',
         ]);
 
+        try {
         DB::table('Payments')->insert([
             'payment_id' => $request->payment_id,
             'student_id' => $request->student_id,
@@ -35,8 +37,10 @@ class PaymentsController extends Controller
             'payment_date' => $request->payment_date,
             'payment_method' => $request->payment_method,
         ]);
-
         return redirect()->route('payments.index')->with('Success','Payment created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('payments.index')->with('Error','Failed to create Payment.');
+        }
     }
 
     public function show(string $id)
@@ -47,11 +51,21 @@ class PaymentsController extends Controller
     public function edit(string $id)
     {
         $payments = DB::table('Payments')->where('payment_id',$id)->get();
-        return view('payments/edit',compact('payments'));
+        $students = DB::table('Students')->get();
+        return view('payments/edit',compact('payments','students'));
     }
 
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'payment_id' => 'required',
+            'student_id' => 'required',
+            'amount' => 'required',
+            'payment_date' => 'required',
+            'payment_method' => 'required',
+        ]);
+
+        try {
         DB::table('Payments')->where('payment_id',$id)
         ->update([
             'payment_id' => $request->payment_id,
@@ -60,8 +74,10 @@ class PaymentsController extends Controller
             'payment_date' => $request->payment_date,
             'payment_method' => $request->payment_method,
         ]);
-
         return redirect()->route('payments.index')->with('Success','Payment created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('payments.index')->with('Error','Failed to create Payment.');
+        }
     }
 
     public function destroy(string $id)

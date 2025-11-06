@@ -10,6 +10,18 @@
         </ul>
     </div>
     <div>
+        @if (session('Success'))
+            <div class="alert alert-success">
+                {{ session('Success') }}
+            </div>
+        @endif
+        @if (session('Error'))
+            <div class="alert alert-danger">
+                {{ session('Error') }}
+            </div>
+        @endif
+    </div>
+    <div>
         <table class="table">
             <thead class="thead-dark">
                 <tr>

@@ -10,6 +10,18 @@
         </ul>
     </div>
     <div>
+        @if (session('Success'))
+            <div class="alert alert-success">
+                {{ session('Success') }}
+            </div>
+        @endif
+        @if (session('Error'))
+            <div class="alert alert-danger">
+                {{ session('Error') }}
+            </div>
+        @endif
+    </div>
+    <div>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -33,8 +45,8 @@
                         <td>{{ $enrollments->end_date }}</td>
                         <td>{{ $enrollments->status }}</td>
                         <td>
-                        <a href="{{ route('enrollments.edit',$enrollments->enrollment_id) }}"><button class="btn btn-warning">แก้ไข</button></a>
-                        <form action="{{ route('enrollments.destroy',$enrollments->course_id) }}" method="POST">
+                        <a href="{{ route('enrollments.edit',$enrollments->enrollment_id) }}"><button class="btn btn-warning" >แก้ไข</button>
+                        <form action="{{ route('enrollments.destroy',$enrollments->enrollment_id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">ลบ</button>

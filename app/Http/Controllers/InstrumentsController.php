@@ -27,14 +27,17 @@ class InstrumentsController extends Controller
             'rental_price' => 'required',
         ]);
 
+        try {
         DB::table('Instruments')->insert([
             'instrument_id' => $request->instrument_id,
             'instrument_name' => $request->instrument_name,
             'category' => $request->category,
             'rental_price' => $request->rental_price,
         ]);
-
         return redirect()->route('instruments.index')->with('Success','Instrument created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('instruments.index')->with('Error','Failed to create Instrument.');
+        }
     }
 
     public function show(string $id)
@@ -50,6 +53,14 @@ class InstrumentsController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'instrument_id' => 'required',
+            'instrument_name' => 'required',
+            'category' => 'required',
+            'rental_price' => 'required',
+        ]);
+
+        try {
         DB::table('Instruments')->where('instrument_id',$id)
         ->update([
             'instrument_id' => $request->instrument_id,
@@ -57,8 +68,10 @@ class InstrumentsController extends Controller
             'category' => $request->category,
             'rental_price' => $request->rental_price,
         ]);
-
         return redirect()->route('instruments.index')->with('Success','Instrument created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('instruments.index')->with('Error','Failed to create Instrument.');
+        }
     }
 
     public function destroy(string $id)
