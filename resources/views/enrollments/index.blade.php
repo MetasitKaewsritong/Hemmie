@@ -33,9 +33,12 @@
                         <td>{{ $enrollments->end_date }}</td>
                         <td>{{ $enrollments->status }}</td>
                         <td>
-                        <button class="btn btn-warning" >แก้ไข</button>
-
-                        <button type="submit" class="btn btn-danger">ลบ</button>
+                        <a href="{{ route('enrollments.edit',$enrollments->enrollment_id) }}"><button class="btn btn-warning">แก้ไข</button></a>
+                        <form action="{{ route('enrollments.destroy',$enrollments->course_id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">ลบ</button>
+                        </form>
                         </td>
                     </tr>
                 @endforeach                

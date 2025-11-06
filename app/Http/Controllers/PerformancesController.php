@@ -46,16 +46,27 @@ class PerformancesController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $performances = DB::table('Performances')->where('performance_id',$id)->get();
+        return view('performances/edit',compact('performances'));
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        DB::table('Performances')->where('performance_id',$id)
+        ->update([
+            'performance_id' => $request->performance_id,
+            'performance_name' => $request->performance_name,
+            'performance_date' => $request->performance_date,
+            'venue' => $request->venue,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('performances.index')->with('Success','Performance created successfully.');
     }
 
     public function destroy(string $id)
     {
-        //
+        DB::table('Performances')->where('performance_id',$id)->delete();
+        return redirect()->route('performances.index')->with('Success','Performance deleted successfully.');
     }
 }

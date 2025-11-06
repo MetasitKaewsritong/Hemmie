@@ -29,9 +29,12 @@
                         <td>{{ $payments->payment_date }}</td>
                         <td>{{ $payments->payment_method }}</td>
                         <td>
-                        <button class="btn btn-warning" >แก้ไข</button>
-
-                        <button type="submit" class="btn btn-danger">ลบ</button>
+                        <a href="{{ route('payments.edit',$payments->payment_id) }}"><button class="btn btn-warning">แก้ไข</button></a>
+                        <form action="{{ route('payments.destroy',$payments->payment_id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">ลบ</button>
+                        </form>
                         </td>
                     </tr>
                 @endforeach                

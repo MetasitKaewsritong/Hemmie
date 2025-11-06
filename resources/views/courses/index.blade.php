@@ -31,9 +31,12 @@
                         <td>{{ $courses->duration_weeks }}</td>
                         <td>{{ $courses->price }}</td>
                         <td>
-                        <button class="btn btn-warning" >แก้ไข</button>
-
-                        <button type="submit" class="btn btn-danger">ลบ</button>
+                        <a href="{{ route('courses.edit',$courses->course_id) }}"><button class="btn btn-warning">แก้ไข</button></a>
+                        <form action="{{ route('courses.destroy',$courses->course_id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">ลบ</button>
+                        </form>
                         </td>
                     </tr>
                 @endforeach                

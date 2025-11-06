@@ -29,9 +29,12 @@
                         <td>{{ $performances->venue }}</td>
                         <td>{{ $performances->description }}</td>
                         <td>
-                        <button class="btn btn-warning" >แก้ไข</button>
-
-                        <button type="submit" class="btn btn-danger">ลบ</button>
+                        <a href="{{ route('performances.edit',$performances->performance_id) }}"><button class="btn btn-warning">แก้ไข</button></a>
+                        <form action="{{ route('performances.destroy',$performances->performance_id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">ลบ</button>
+                        </form>
                         </td>
                     </tr>
                 @endforeach                

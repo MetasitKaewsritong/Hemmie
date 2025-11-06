@@ -50,16 +50,28 @@ class StudentsController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $students = DB::table('Students')->where('student_id',$id)->get();
+        return view('students/edit',compact('students'));
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        DB::table('Students')->where('student_id',$id)
+        ->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'date_of_birth' => $request->date_of_birth,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'registration_date' => $request->registration_date,
+        ]);
+
+        return redirect()->route('students.index')->with('Success','Student created successfully.');
     }
 
     public function destroy(string $id)
     {
-        //
+        DB::table('Students')->where('student_id',$id)->delete();
+        return redirect()->route('students.index')->with('success','Student deleted successfully.');
     }
 }

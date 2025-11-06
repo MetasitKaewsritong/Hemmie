@@ -27,9 +27,12 @@
                         <td>{{ $instruments->category }}</td>
                         <td>{{ $instruments->rental_price }}</td>
                         <td>
-                        <button class="btn btn-warning" >แก้ไข</button>
-
-                        <button type="submit" class="btn btn-danger">ลบ</button>
+                        <a href="{{ route('instruments.edit',$instruments->instrument_id) }}"><button class="btn btn-warning">แก้ไข</button></a>
+                        <form action="{{ route('instruments.destroy',$instruments->instrument_id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">ลบ</button>
+                        </form>
                         </td>
                     </tr>
                 @endforeach                

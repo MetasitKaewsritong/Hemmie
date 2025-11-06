@@ -2,9 +2,11 @@
 @section('title', 'Music')
 @section('content')
 
-    <form action="{{ route('lessons.store') }}" method="POST">
+@foreach ($lessons as $lessons)
+@endforeach
+    <form action="{{ route('lessons.update',$lessons->lesson_id) }}" method="POST">
         @csrf
-        @method('POST')
+        @method('PUT')
 
         <table class="table-bordered">
             <tr>
@@ -12,7 +14,7 @@
                     <strong>รหัสวิชา</strong>
                 </td>
                 <td>
-                    <input type="text" name="lesson_id" class="form-control">
+                    <input type="text" readonly name="lesson_id" value="{{ $lessons->lesson_id }}" class="form-control">
                 </td>
             </tr>
             <tr>
@@ -20,7 +22,7 @@
                     <strong>รหัสการลงทะเบียน</strong>
                 </td>
                 <td>
-                    <input type="text" name="enrollment_id" class="form-control">
+                    <input type="text" name="enrollment_id" value="{{ $lessons->enrollment_id }}" class="form-control">
                 </td>
             </tr>
             <tr>
@@ -28,7 +30,7 @@
                     <strong>วันที่ลงทะเบียน</strong>
                 </td>
                 <td>
-                    <input type="text" name="lesson_date" class="form-control">
+                    <input type="text" name="lesson_date" value="{{ $lessons->lesson_date }}" class="form-control">
                 </td>
             </tr>
             <tr>
@@ -36,7 +38,7 @@
                     <strong>เวลาเริ่ม</strong>
                 </td>
                 <td>
-                    <input type="text" name="start_time" class="form-control">
+                    <input type="text" name="start_time" value="{{ $lessons->start_time }}" class="form-control">
                 </td>
             </tr>
             <tr>
@@ -44,7 +46,7 @@
                     <strong>เวลาสิ้นสุด</strong>
                 </td>
                 <td>
-                    <input type="text" name="end_time" class="form-control">
+                    <input type="text" name="end_time" value="{{ $lessons->end_time }}" class="form-control">
                 </td>
             </tr>
             <tr>
@@ -52,7 +54,7 @@
                     <strong>การมาเรียน</strong>
                 </td>
                 <td>
-                    <input type="text" name="attendance" class="form-control">
+                    <input type="text" name="attendance" value="{{ $lessons->attendance }}" class="form-control">
                 </td>
             </tr>
             <tr>
@@ -60,7 +62,7 @@
                     <strong>คำอธิบาย</strong>
                 </td>
                 <td>
-                    <input type="text" name="notes" class="form-control">
+                    <input type="text" name="notes" value="{{ $lessons->notes }}" class="form-control">
                 </td>
             </tr>
 

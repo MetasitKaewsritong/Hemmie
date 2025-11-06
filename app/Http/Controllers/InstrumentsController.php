@@ -44,16 +44,26 @@ class InstrumentsController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $instruments = DB::table('Instruments')->where('instrument_id',$id)->get();
+        return view('instruments/edit',compact('instruments'));
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        DB::table('Instruments')->where('instrument_id',$id)
+        ->update([
+            'instrument_id' => $request->instrument_id,
+            'instrument_name' => $request->instrument_name,
+            'category' => $request->category,
+            'rental_price' => $request->rental_price,
+        ]);
+
+        return redirect()->route('instruments.index')->with('Success','Instrument created successfully.');
     }
 
     public function destroy(string $id)
     {
-        //
+        DB::table('Instruments')->where('instrument_id',$id)->delete();
+        return redirect()->route('instruments.index')->with('Success','Instrument deleted successfully.');
     }
 }

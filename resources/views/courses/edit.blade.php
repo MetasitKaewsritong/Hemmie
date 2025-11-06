@@ -2,9 +2,11 @@
 @section('title', 'Music')
 @section('content')
 
-    <form action="{{ route('lessons.store') }}" method="POST">
+@foreach ($courses as $courses)
+@endforeach
+    <form action="{{ route('courses.update',$courses->course_id) }}" method="POST">
         @csrf
-        @method('POST')
+        @method('PUT')
 
         <table class="table-bordered">
             <tr>
@@ -12,55 +14,47 @@
                     <strong>รหัสวิชา</strong>
                 </td>
                 <td>
-                    <input type="text" name="lesson_id" class="form-control">
+                    <input type="text" readonly name="course_id" value="{{ $courses->course_id }}" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>รหัสการลงทะเบียน</strong>
+                    <strong>ชื่อวิชา</strong>
                 </td>
                 <td>
-                    <input type="text" name="enrollment_id" class="form-control">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>วันที่ลงทะเบียน</strong>
-                </td>
-                <td>
-                    <input type="text" name="lesson_date" class="form-control">
+                    <input type="text" name="course_name" value="{{ $courses->course_name }}" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>เวลาเริ่ม</strong>
+                    <strong>รหัสเครื่องดนตรี</strong>
                 </td>
                 <td>
-                    <input type="text" name="start_time" class="form-control">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>เวลาสิ้นสุด</strong>
-                </td>
-                <td>
-                    <input type="text" name="end_time" class="form-control">
+                    <input type="text" name="instrument_id" value="{{ $courses->instrument_id }}" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>การมาเรียน</strong>
+                    <strong>ระดับ</strong>
                 </td>
                 <td>
-                    <input type="text" name="attendance" class="form-control">
+                    <input type="text" name="level" value="{{ $courses->level }}" class="form-control">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>คำอธิบาย</strong>
+                    <strong>จำนวนสัปดาห์</strong>
                 </td>
                 <td>
-                    <input type="text" name="notes" class="form-control">
+                    <input type="text" name="duration_weeks" value="{{ $courses->duration_weeks }}" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>ราคา</strong>
+                </td>
+                <td>
+                    <input type="text" name="price" value="{{ $courses->price }}" class="form-control">
                 </td>
             </tr>
 

@@ -33,9 +33,12 @@
                         <td>{{ $lessons->attendance }}</td>
                         <td>{{ $lessons->notes }}</td>
                         <td>
-                        <button class="btn btn-warning" >แก้ไข</button>
-
-                        <button type="submit" class="btn btn-danger">ลบ</button>
+                        <a href="{{ route('lessons.edit',$lessons->lesson_id) }}"><button class="btn btn-warning">แก้ไข</button></a>
+                        <form action="{{ route('lessons.destroy',$lessons->lesson_id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">ลบ</button>
+                        </form>
                         </td>
                     </tr>
                 @endforeach                

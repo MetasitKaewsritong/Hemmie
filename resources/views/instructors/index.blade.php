@@ -33,9 +33,12 @@
                         <td>{{ $instructors->specialization }}</td>
                         <td>{{ $instructors->hire_date }}</td>
                         <td>
-                        <button class="btn btn-warning" >แก้ไข</button>
-
-                        <button type="submit" class="btn btn-danger">ลบ</button>
+                        <a href="{{ route('instructors.edit',$instructors->instructor_id) }}"><button class="btn btn-warning">แก้ไข</button></a>
+                        <form action="{{ route('instructors.destroy',$instructors->instructor_id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">ลบ</button>
+                        </form>
                         </td>
                     </tr>
                 @endforeach                

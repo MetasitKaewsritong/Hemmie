@@ -33,9 +33,12 @@
                         <td>{{ $students->phone }}</td>
                         <td>{{ $students->registration_date }}</td>
                         <td>
-                        <button class="btn btn-warning" >แก้ไข</button>
-
-                        <button type="submit" class="btn btn-danger">ลบ</button>
+                        <a href="{{ route('students.edit',$students->student_id) }}"><button class="btn btn-warning">แก้ไข</button></a>
+                        <form action="{{ route('students.destroy',$students->student_id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">ลบ</button>
+                        </form>
                         </td>
                     </tr>
                 @endforeach                

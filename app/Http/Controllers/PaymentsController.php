@@ -46,16 +46,27 @@ class PaymentsController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $payments = DB::table('Payments')->where('payment_id',$id)->get();
+        return view('payments/edit',compact('payments'));
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        DB::table('Payments')->where('payment_id',$id)
+        ->update([
+            'payment_id' => $request->payment_id,
+            'student_id' => $request->student_id,
+            'amount' => $request->amount,
+            'payment_date' => $request->payment_date,
+            'payment_method' => $request->payment_method,
+        ]);
+
+        return redirect()->route('payments.index')->with('Success','Payment created successfully.');
     }
 
     public function destroy(string $id)
     {
-        //
+        DB::table('Payments')->where('payment_id',$id)->delete();
+        return redirect()->route('payments.index')->with('Success','Payment deleted successfully.');
     }
 }

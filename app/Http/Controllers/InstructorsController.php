@@ -50,16 +50,29 @@ class InstructorsController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $instructors = DB::table('Instructors')->where('instructor_id',$id)->get();
+        return view('instructors/edit',compact('instructors'));
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        DB::table('Instructors')->where('instructor_id',$id)
+        ->update([
+            'instructor_id' => $request->instructor_id,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'specialization' => $request->specialization,
+            'hire_date' => $request->hire_date,
+        ]);
+
+        return redirect()->route('instructors.index')->with('Success','Instructor created successfully.');
     }
 
     public function destroy(string $id)
     {
-        //
+        DB::table('Instructors')->where('instructor_id',$id)->delete();
+        return redirect()->route('instructors.index')->with('Success','Instructor deleted successfully.');
     }
 }

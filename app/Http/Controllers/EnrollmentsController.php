@@ -50,16 +50,29 @@ class EnrollmentsController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $enrollments = DB::table('Enrollments')->where('enrollment_id',$id)->get();
+        return view('enrollments/edit',compact('enrollments'));
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        DB::table('Enrollments')->where('enrollment_id',$id)
+        ->update([
+            'enrollment_id' => $request->enrollment_id,
+            'student_id' => $request->student_id,
+            'course_id' => $request->course_id,
+            'instructor_id' => $request->instructor_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('enrollments.index')->with('Success','Enrollment created successfully.');
     }
 
     public function destroy(string $id)
     {
-        //
+        DB::table('Enrollments')->where('enrollment_id',$id)->delete();
+        return redirect()->route('enrollments.index')->with('Success','Enrollment deleted successfully.');
     }
 }
