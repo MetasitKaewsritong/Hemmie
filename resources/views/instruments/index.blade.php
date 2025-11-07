@@ -5,7 +5,7 @@
     <div>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <button class="btn btn-success"><a href="{{ route('instruments.create') }}">เพิ่มข้อมูล</a></button>
+                <a href="{{ route('courses.create') }}" class="btn btn-success">เพิ่มข้อมูล</a>
             </li>
         </ul>
     </div>
