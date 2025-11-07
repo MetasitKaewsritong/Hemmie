@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Music - Main')
+@section('title', 'Music')
 @section('content')
 
 
