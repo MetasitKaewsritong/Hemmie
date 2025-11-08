@@ -76,7 +76,11 @@ class InstrumentsController extends Controller
 
     public function destroy(string $id)
     {
-        DB::table('Instruments')->where('instrument_id',$id)->delete();
-        return redirect()->route('instruments.index')->with('Success','Instrument deleted successfully.');
+        try {
+        DB::table('Instruments')->where('instrument_id', $id)->delete();
+        return redirect()->route('instruments.index')->with('Success', 'Instrument deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('instruments.index')->with('Error', 'Failed to delete Instrument.');
+        }
     }
 }

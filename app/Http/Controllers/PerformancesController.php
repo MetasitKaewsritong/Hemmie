@@ -80,7 +80,11 @@ class PerformancesController extends Controller
 
     public function destroy(string $id)
     {
-        DB::table('Performances')->where('performance_id',$id)->delete();
-        return redirect()->route('performances.index')->with('Success','Performance deleted successfully.');
+        try {
+        DB::table('Performances')->where('performance_id', $id)->delete();
+        return redirect()->route('performances.index')->with('Success', 'Performance deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('performances.index')->with('Error', 'Failed to delete Performance.');
+        }
     }
 }

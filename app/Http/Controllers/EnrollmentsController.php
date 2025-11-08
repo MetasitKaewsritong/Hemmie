@@ -94,7 +94,11 @@ class EnrollmentsController extends Controller
 
     public function destroy(string $id)
     {
+        try {
         DB::table('Enrollments')->where('enrollment_id', $id)->delete();
-        return redirect()->route('enrollments.index')->with('Success','Enrollment deleted successfully.');
+        return redirect()->route('enrollments.index')->with('Success', 'Enrollment deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('enrollments.index')->with('Error', 'Failed to delete Enrollment.');
+        }
     }
 }

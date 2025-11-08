@@ -82,7 +82,11 @@ class PaymentsController extends Controller
 
     public function destroy(string $id)
     {
-        DB::table('Payments')->where('payment_id',$id)->delete();
-        return redirect()->route('payments.index')->with('Success','Payment deleted successfully.');
+        try {
+        DB::table('Payments')->where('payment_id', $id)->delete();
+        return redirect()->route('payments.index')->with('Success', 'Payment deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('payments.index')->with('Error', 'Failed to delete Payment.');
+        }
     }
 }

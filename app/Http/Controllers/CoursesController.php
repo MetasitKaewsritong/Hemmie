@@ -86,7 +86,11 @@ class CoursesController extends Controller
 
     public function destroy(string $id)
     {
-        DB::table('Courses')->where('course_id',$id)->delete();
-        return redirect()->route('courses.index')->with('Success','Course deleted successfully.');
+        try {
+        DB::table('Courses')->where('course_id', $id)->delete();
+        return redirect()->route('courses.index')->with('Success', 'Course deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('courses.index')->with('Error', 'Failed to delete Course.');
+        }
     }
 }

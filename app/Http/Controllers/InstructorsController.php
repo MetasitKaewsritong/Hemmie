@@ -88,7 +88,11 @@ class InstructorsController extends Controller
 
     public function destroy(string $id)
     {
-        DB::table('Instructors')->where('instructor_id',$id)->delete();
-        return redirect()->route('instructors.index')->with('Success','Instructor deleted successfully.');
+        try {
+        DB::table('Instructors')->where('instructor_id', $id)->delete();
+        return redirect()->route('instructors.index')->with('Success', 'Instructor deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('instructors.index')->with('Error', 'Failed to delete Instructor.');
+        }
     }
 }

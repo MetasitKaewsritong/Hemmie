@@ -90,7 +90,11 @@ class LessonsController extends Controller
 
     public function destroy(string $id)
     {
-        DB::table('Lessons')->where('lesson_id',$id)->delete();
-        return redirect()->route('lessons.index')->with('Success','Lesson deleted successfully.');
+        try {
+        DB::table('Lessons')->where('lesson_id', $id)->delete();
+        return redirect()->route('lessons.index')->with('Success', 'Lesson deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('lessons.index')->with('Error', 'Failed to delete Lesson.');
+        }
     }
 }
